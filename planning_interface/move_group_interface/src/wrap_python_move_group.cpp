@@ -389,6 +389,11 @@ public:
      return constraints_str;
   }
 
+  void setMaxVelocityScalingFactorPython(double max_velocity_scaling_factor)
+  {
+    setMaxVelocityScalingFactor(max_velocity_scaling_factor);
+  }
+
 };
 
 static void wrap_move_group_interface()
@@ -430,6 +435,7 @@ static void wrap_move_group_interface()
   MoveGroupClass.def("set_position_target", &MoveGroupWrapper::setPositionTarget);
   MoveGroupClass.def("set_rpy_target", &MoveGroupWrapper::setRPYTarget);
   MoveGroupClass.def("set_orientation_target", &MoveGroupWrapper::setOrientationTarget);
+  MoveGroupClass.def("set_max_velocity_scaling_factor", &MoveGroupWrapper::setMaxVelocityScalingFactorPython);
 
   MoveGroupClass.def("get_current_pose", &MoveGroupWrapper::getCurrentPosePython);
   MoveGroupClass.def("get_current_rpy", &MoveGroupWrapper::getCurrentRPYPython);

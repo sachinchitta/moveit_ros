@@ -446,7 +446,7 @@ bool planning_scene_monitor::PlanningSceneMonitor::requestPlanningSceneState(con
   if (!client.exists())
   {
     ROS_DEBUG_STREAM("Waiting for service `" << service_name << "` to exist.");
-    client.waitForExistence(ros::Duration(5.0));
+    client.waitForExistence(ros::Duration(20.0));
   }
 
   if (client.call(srv))
@@ -939,6 +939,7 @@ void planning_scene_monitor::PlanningSceneMonitor::startWorldGeometryMonitor(con
     if (!octomap_monitor_)
     {
       octomap_monitor_.reset(new occupancy_map_monitor::OccupancyMapMonitor(tf_, scene_->getPlanningFrame()));
+      ROS_INFO("Octomap maintained in frame: %s", scene_->getPlanningFrame().c_str());
       excludeRobotLinksFromOctree();
       excludeAttachedBodiesFromOctree();
       excludeWorldObjectsFromOctree();

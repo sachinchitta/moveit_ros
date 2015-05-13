@@ -239,6 +239,7 @@ public:
 
   void setMaxVelocityScalingFactor(double max_velocity_scaling_factor)
   {
+    ROS_INFO("Max scaling factor: %f", max_velocity_scaling_factor);
     max_velocity_scaling_factor_ = max_velocity_scaling_factor;
   }
   

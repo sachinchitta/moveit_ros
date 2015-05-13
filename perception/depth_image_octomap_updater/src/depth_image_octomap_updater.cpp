@@ -502,11 +502,16 @@ void DepthImageOctomapUpdater::depthImageCallback(const sensor_msgs::ImageConstP
 
   // mark occupied cells
   tree_->lockWrite();
+  tree_->clear();
   try
   {
     /* now mark all occupied cells */
     for (octomap::KeySet::iterator it = occupied_cells.begin(), end = occupied_cells.end(); it != end; ++it)
+    {
       tree_->updateNode(*it, true);
+      //      octomap::point3d p = tree_->keyToCoord(*it);
+      //      ROS_INFO("Inserting: %f %f %f", p.x(), p.y(), p.z());
+    }
   }
   catch (...)
   {
